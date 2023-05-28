@@ -68,7 +68,7 @@ int light_index;
 int multiplier;
 int delay_per_read;
 int threshold_time;
-int flag_max_hit;
+int flag_max_hit; // 
 int servoPosition = 0;  // Initial position of the servo motor
 
 
@@ -96,10 +96,10 @@ void setup() {
   Timer[light_index] = 5000;
   signal[light_index] = GREEN;
   multiplier = 1250;
-  delay_per_read=250;
-  threshold_time=30000;
-  flag_max_hit=0;
-  type=0;
+  delay_per_read = 250;
+  threshold_time = 30000;
+  flag_max_hit = 0;
+  type = 0;
 
   servo.attach(servoPin);  // Attach the servo to the specified pin
   servo.write(servoPosition);  // Set the initial position of the servo motor
@@ -108,94 +108,86 @@ void setup() {
 
 void loop() {
 
-  int max_cars=threshold_time/multiplier;  
-  // currentMillis = millis();
-  // read1();
-  // read2();
-  // read3();
-  // read4();
-  // red_count_1+= green_count_1;
-  // green_count_1=0;
-
-  // red_count_2+= green_count_2;
-  // green_count_2=0;
+  int max_cars=threshold_time/multiplier;
   
-  // red_count_3+= green_count_3;
-  // green_count_3=0;
-
-  // red_count_4+= green_count_4;
-  // green_count_4=0;
-
-
-
   signal[light_index] = GREEN;
 
-  // Sets traffic lights
-  if(light_index==0)
-    {
-      digitalWrite(led_red_1,LOW);
-      digitalWrite(led_red_2,HIGH);
-      digitalWrite(led_red_3,HIGH);
-      digitalWrite(led_red_4,HIGH);
-
-      digitalWrite(led_green_1,HIGH);
-      digitalWrite(led_green_2,LOW);
-      digitalWrite(led_green_3,LOW);
-      digitalWrite(led_green_4,LOW);
-
-    }
-  else if(light_index==1)
-    {
-      digitalWrite(led_red_2,LOW);
-      digitalWrite(led_red_1,HIGH);
-      digitalWrite(led_red_3,HIGH);
-      digitalWrite(led_red_4,HIGH);
-
-      digitalWrite(led_green_2,HIGH);
-      digitalWrite(led_green_1,LOW);
-      digitalWrite(led_green_3,LOW);
-      digitalWrite(led_green_4,LOW);
-    }
-  else if(light_index==2)
-    {
-      digitalWrite(led_red_3,LOW);
-      digitalWrite(led_red_2,HIGH);
-      digitalWrite(led_red_1,HIGH);
-      digitalWrite(led_red_4,HIGH);
-
-      digitalWrite(led_green_3,HIGH);
-      digitalWrite(led_green_2,LOW);
-      digitalWrite(led_green_1,LOW);
-      digitalWrite(led_green_4,LOW);
-    }
-  else if(type==1 && light_index==3)
-    {
-      digitalWrite(led_red_4,LOW);
-      digitalWrite(led_red_2,HIGH);
-      digitalWrite(led_red_3,HIGH);
-      digitalWrite(led_red_1,HIGH);
-
-      digitalWrite(led_green_4,HIGH);
-      digitalWrite(led_green_2,LOW);
-      digitalWrite(led_green_3,LOW);
-      digitalWrite(led_green_1,LOW);
-    }
-   
-
-
-  if (light_index == 0 && signal[light_index] == RED) {
-    // Rotate the servo motor to a specific position
-    servoPosition = 180;  // Set the desired position (e.g., 180 degrees)
-    servo.write(servoPosition);  // Rotate the servo motor to the specified position
+  switch (light_index) {
+  case 0: {
+    digitalWrite(led_red_1,LOW);
+    digitalWrite(led_red_2,HIGH);
+    digitalWrite(led_red_3,HIGH);
+    digitalWrite(led_red_4,HIGH);
+    
+    digitalWrite(led_green_1,HIGH);
+    digitalWrite(led_green_2,LOW);
+    digitalWrite(led_green_3,LOW);
+    digitalWrite(led_green_4,LOW);
+    break;
   }
+  case 1: {
+    digitalWrite(led_red_2,LOW);
+    digitalWrite(led_red_1,HIGH);
+    digitalWrite(led_red_3,HIGH);
+    digitalWrite(led_red_4,HIGH);
+    
+    digitalWrite(led_green_2,HIGH);
+    digitalWrite(led_green_1,LOW);
+    digitalWrite(led_green_3,LOW);
+    digitalWrite(led_green_4,LOW);
+    break;
+  }
+  case 2: {
+    digitalWrite(led_red_3,LOW);
+    digitalWrite(led_red_2,HIGH);
+    digitalWrite(led_red_1,HIGH);
+    digitalWrite(led_red_4,HIGH);
+    
+    digitalWrite(led_green_3,HIGH);
+    digitalWrite(led_green_2,LOW);
+    digitalWrite(led_green_1,LOW);
+    digitalWrite(led_green_4,LOW);
+    break;
+  }
+  case 3: {
+    if (type == 3) break;
+    digitalWrite(led_red_4,LOW);
+    digitalWrite(led_red_2,HIGH);
+    digitalWrite(led_red_3,HIGH);
+    digitalWrite(led_red_1,HIGH);
+    
+    digitalWrite(led_green_4,HIGH);
+    digitalWrite(led_green_2,LOW);
+    digitalWrite(led_green_3,LOW);
+    digitalWrite(led_green_1,LOW);
+    break;
+  }
+  default: {
+    Serial.println("Warning: Invalid junction number");
+  }
+  }
+
+  // Pedestrian Crossing
+  if (light_index == 0 && signal[light_index] == RED) {
+    // rotate the servo motor upright to open pedestrian gate
+    servoPosition = 90;
+  } else {
+    // Reset the servo motor position
+    servoPosition = 0;
+  }
+  servo.write(servoPosition);  // Rotate the servo motor to the specified position
      
 
-  // LED green triger
-  if(flag_max_hit<max_cars && count_arr[light_index] > 0 && count_arr[light_index] <= max_cars){ 
+  /////// LED green trigger
+  // If the junction is empty 
+  if (flag_max_hit < max_cars &&
+      count_arr[light_index] > 0 &&
+      count_arr[light_index] <= max_cars) { 
     Timer[light_index] += (multiplier * count_arr[light_index]);
     flag_max_hit+=count_arr[light_index];
     count_arr[light_index] = 0;
   }
+  // If junction still has cars
   else if(flag_max_hit<max_cars && count_arr[light_index] > max_cars ){
     Timer[light_index] += multiplier*max_cars;
     flag_max_hit+=count_arr[light_index];
@@ -204,17 +196,14 @@ void loop() {
 
   Timer[light_index] -= 1;
 
-  count_arr[0] += read1();
-  
-  count_arr[1] += read2();
-
-  count_arr[2] += read3();
-
+  count_arr[0] += read(inductivePin_1);  
+  count_arr[1] += read(inductivePin_2);
+  count_arr[2] += read(inductivePin_3);
   if(type == 1)
-    count_arr[3] += read4();
+    count_arr[3] += read(inductivePin_4);
 
+  // DEBUG PRINTS
   Serial.println("Count arr:-");
-
   Serial.println(count_arr[0]);
   Serial.println(count_arr[1]);
   Serial.println(count_arr[2]);
@@ -222,84 +211,69 @@ void loop() {
   Serial.println();
 
   Serial.println("Timer:-");
-
   Serial.println(Timer[0]);
   Serial.println(Timer[1]);
   Serial.println(Timer[2]);
   if(type == 1)  Serial.println(Timer[3]);
   Serial.println();
+  // END DEBUG PRINTS
 
-  if (light_index != 0 || signal[light_index] != RED) {
-    // Reset the servo motor position
-    servoPosition = 0;  // Set the initial position (e.g., 0 degrees)
-    servo.write(servoPosition);  // Rotate the servo motor to the specified position
-  }  
-
-
-
-  if(Timer[light_index] == 0 || Timer[light_index] < 0) {
-      signal[light_index] = GREEN;
-      //LED Red triger 
-      Timer[light_index]=0;
-      flag_max_hit=0;
-      if(light_index==0)
-	{
-	  digitalWrite(led_green_1,LOW);
-	  digitalWrite(led_red_1,HIGH);
-	}
-      else if(light_index==1)
-	{
-	  digitalWrite(led_green_2,LOW);
-	  digitalWrite(led_red_2,HIGH);
-	}
-      else if(light_index==2)
-	{
-	  digitalWrite(led_green_3,LOW);
-	  digitalWrite(led_red_3,HIGH);
-	}
-      else if(light_index==3)
-	{
-	  digitalWrite(led_green_4,LOW);
-	  digitalWrite(led_red_4,HIGH);
-	}
-      if(type==1)
-	light_index = (light_index+1)%4;
-      else
-	light_index = (light_index+1)%3;
-   
-      Serial.println("Light switching");
-      Serial.println(light_index);
-      if(Base_condition(count_arr)) 
-	{ 
-	  Serial.println("base condition hits");
-	  Timer[light_index] = 5000;
-	}
+  if(Timer[light_index] <= 0) {
+    // reset all signal variables
+    signal[light_index] = RED;
+    Timer[light_index] = 0;
+    flag_max_hit = 0;
+    
+    switch (light_index) {
+    case 0: {
+      digitalWrite(led_green_1, LOW);
+      digitalWrite(led_red_1, HIGH);
+      break;
     }
+    case 1: {
+      digitalWrite(led_green_2, LOW);
+      digitalWrite(led_red_2, HIGH);
+      break;
+    }
+    case 2: {
+      digitalWrite(led_green_3, LOW);
+      digitalWrite(led_red_3, HIGH);
+      break;
+    }
+    case 3: {
+      digitalWrite(led_green_4, LOW);
+      digitalWrite(led_red_4, HIGH);
+      break;
+    }
+    default: {
+      Serial.println("Warning: Invalid junction case");
+    }
+    }
+    if(type==1)
+      light_index = (light_index + 1) % 4;
+    else
+      light_index = (light_index + 1) % 3;
+    
+    Serial.println("Light switching");
+    Serial.println(light_index);
+    
+    if (Base_condition(count_arr)) 
+      { 
+	Serial.println("Base condition is hit");
+	Timer[light_index] = 5000;
+      }
+    signal[light_index] = GREEN;
+  }
 
   if(type == 1)
-    Timer[light_index]=Timer[light_index]-(delay_per_read*4);
+    Timer[light_index] -= (delay_per_read*4);
   else
-    Timer[light_index]=Timer[light_index]-(delay_per_read*3);
+    Timer[light_index] -= (delay_per_read*3);
    
 }
 
-int read1(){
-  int val = digitalRead(inductivePin_1);  // Read the value from the inductive sensor
-  delay(delay_per_read);
-  return val;
-}
-int read2(){
-  int val = digitalRead(inductivePin_2);  // Read the value from the inductive sensor
-  delay(delay_per_read);
-  return val;
-}
-int read3(){
-  int val = digitalRead(inductivePin_3);  // Read the value from the inductive sensor
-  delay(delay_per_read);
-  return val;
-}
-int read4(){
-  int val = digitalRead(inductivePin_4);  // Read the value from the inductive sensor
+int read_from_pin (int inductive_pin) {
+  int val = digitalRead(inductive_pin);  // Read the value from the inductive sensor
   delay(delay_per_read);
   return val;
 }
