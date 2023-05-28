@@ -3,31 +3,54 @@
 #include "Ultrasonic.h"
 #include <Servo.h>
 
-int type = 1; // Type of circuit 
+int type = 0; // Type of circuit 
 // 1 - 4 junction with 4 ultrasonic sensors
 // 0 - 3 junction with 3 ultrasonic sensors
 
 
-const int trigPin1 = 12;  // Trigger pin for sensor 1
-const int echoPin1 = 14;  // Echo pin for sensor 1
+// const int trigPin1 = 12;  // Trigger pin for sensor 1
+// const int echoPin1 = 14;  // Echo pin for sensor 1
 
-const int trigPin2 = 33;  // Trigger pin for sensor 2
-const int echoPin2 = 32;  // Echo pin for sensor 2
+// const int trigPin2 = 33;  // Trigger pin for sensor 2
+// const int echoPin2 = 32;  // Echo pin for sensor 2
 
-const int trigPin3 = 5;  // Trigger pin for sensor 3
-const int echoPin3 = 18;  // Echo pin for sensor 3
+// const int trigPin3 = 5;  // Trigger pin for sensor 3
+// const int echoPin3 = 18;  // Echo pin for sensor 3
+
+// const int trigPin4 = 4;  // Trigger pin for sensor 4
+// const int echoPin4 = 2;  // Echo pin for sensor 4
+
+// const int led_red_1 = 22;
+// const int led_red_2 = 23;
+// const int led_red_3 = 35;
+// const int led_red_4 = 15;
+
+// const int led_green_1 = 21;
+// const int led_green_2 = 27;
+// const int led_green_3 = 34;
+// const int led_green_4 = 19;
+
+
+const int trigPin1 = 5;  // Trigger pin for sensor 1
+const int echoPin1 = 18;  // Echo pin for sensor 1
+
+const int trigPin2 = 19;  // Trigger pin for sensor 2
+const int echoPin2 = 21;  // Echo pin for sensor 2
+
+const int trigPin3 = 22;  // Trigger pin for sensor 3
+const int echoPin3 = 23;  // Echo pin for sensor 3
 
 const int trigPin4 = 4;  // Trigger pin for sensor 4
 const int echoPin4 = 2;  // Echo pin for sensor 4
 
-const int led_red_1 = 22;
-const int led_red_2 = 23;
-const int led_red_3 = 35;
-const int led_red_4 = 15;
+const int led_red_1 = 27;
+const int led_red_2 = 26;
+const int led_red_3 = 25;
+const int led_red_4 = 35;
 
-const int led_green_1 = 21;
-const int led_green_2 = 27;
-const int led_green_3 = 34;
+const int led_green_1 = 33;
+const int led_green_2 = 12;
+const int led_green_3 = 14;
 const int led_green_4 = 19;
 
 const int servoPin = 13;  // Pin connected to the servo motor
@@ -137,7 +160,7 @@ void loop() {
     break;
   }
   case 3: {
-    if (type == 3) break;
+    if (type == 0) break;
     digitalWrite(led_red_1,HIGH);
     digitalWrite(led_red_2,HIGH);
     digitalWrite(led_red_3,HIGH);
