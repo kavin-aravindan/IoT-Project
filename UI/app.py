@@ -6,8 +6,37 @@ import sqlite3
 app = Flask(__name__)
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+@app.route('/home')
+def home():
+    return render_template('home.html')
+
+@app.route('/stats')
+def stats():
+    return render_template('stats.html')
+
+@app.route('/junca')
+def junca():
+    return render_template('junca.html')
+
+@app.route('/juncb')
+def juncb():
+    return render_template('juncb.html')
+
+@app.route('/juncc')
+def juncc():
+    return render_template('juncc.html')
+
+@app.route('/juncd')
+def juncd():
+    return render_template('juncd.html')
+
+@app.route('/junce')
+def junce():
+    return render_template('junce.html')
+
+@app.route('/test')
+def maps():
+    return render_template('test.html')
 
 @app.route('/data')
 def get_data():
