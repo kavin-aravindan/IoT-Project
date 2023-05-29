@@ -5,12 +5,30 @@
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
         crossorigin=""/>
+        <link rel="stylesheet" href="../static/styles.css">
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
         crossorigin=""></script>
     </head>
     <body>
-        <div id="map" style="height: 180px;">
+
+        <nav>
+            <div class="logo_header">
+                <img class="logo" src="../static/imgs/logo.png" />
+            </div>
+            <ul class="navbar">
+                <li><a href="http://127.0.0.1:5000/home">Home</a></li>
+                <!-- will be redirected to login page if not logged in -->
+                <li><a href="http://127.0.0.1:5000/stats">Statistics</a></li>
+                <li><a href="http://127.0.0.1:5000/test">Status</a></li>
+            </ul>
+        </nav>
+
+        <br><br><br><br><br><br>
+
+        <h1 style="text-align: center;">Live Status</h1>
+
+        <div id="map" style="height: 400px;">
 
         </div>
     </body>
