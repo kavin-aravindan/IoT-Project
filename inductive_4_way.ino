@@ -68,7 +68,7 @@ void setup() {
   Timer[light_index] = 5000;
   signal[light_index] = GREEN;
   multiplier = 1250;
-  delay_per_read = 250;
+  delay_per_read = 1;
   threshold_time = 30000;
   flag_max_hit = 0;
   type = 1;
