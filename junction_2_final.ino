@@ -2,6 +2,7 @@
 // #include <NewPing.h>
 
 #include <Servo.h>
+#include "om2m.h"
 
 int type = 1; // Type of circuit 
 // 1 - 4 junction with 4 ultrasonic sensors
@@ -47,6 +48,12 @@ int servoPosition = 0;  // Initial position of the servo motor
 void setup() {
   Serial.begin(9600);
 
+  WiFi.begin(MAIN_SSID, MAIN_PASS);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print("#");
+  }
+
   // Initialise pinmodes for all LEDS
   pinMode(led_red_1,OUTPUT);
   pinMode(led_red_2,OUTPUT);
@@ -78,6 +85,12 @@ void setup() {
 }
 
 void loop() {
+
+  int a= digitalRead(led_green_1);
+  int b= digitalRead(led_green_2);
+  int c= digitalRead(led_green_3);
+  int d= digitalRead(led_green_4);
+  int arr2[]= {a, b, c, d};
 
   Serial.printf("LED red  : %d %d %d %d\n", digitalRead(led_red_1), digitalRead(led_red_2), digitalRead(led_red_3), digitalRead(led_red_4));
   Serial.printf("LED green: %d %d %d %d\n", digitalRead(led_green_1), digitalRead(led_green_2), digitalRead(led_green_3), digitalRead(led_green_4));
@@ -191,6 +204,7 @@ void loop() {
   if(type == 1)  Serial.println(Timer[3]);
   Serial.println();
   // END DEBUG PRINTS
+  write_to_om2m(type, count_arr, arr2, "Junction-2/Data");
 
   if(Timer[light_index] <= 0) {
     // reset all signal variables
