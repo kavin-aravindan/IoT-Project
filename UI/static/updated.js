@@ -96,4 +96,4 @@ function fetchData(endpoint) {
             setTimeout(() => fetchData(endpoint), 1000);
         });
 }
-fetchData("/data")
+fetchData("/dataD")

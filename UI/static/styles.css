@@ -131,10 +131,10 @@ h2 {
 
 .img_option {
     border-radius: 50px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 20px;
-    padding-bottom: 30px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     width: 300px;
     height: auto;
 }
@@ -162,20 +162,20 @@ hr {
 
 .home_title {
     padding: 50px;
-    padding-left: 150px;
-    margin-top: 130px;
+    padding-left: 50px;
+    margin-top: 30px;
     text-align: left;
     color: rgb(234, 234, 234);
-    font-size: 70px;
+    font-size: 50px;
     font-family: "Source Sans Pro", sans-serif;
 }
 
 .home_desc {
-    padding-left: 150px;
+    padding-left: 50px;
     padding-right: 80px;
     text-align: left;
     color: rgb(225, 225, 225);
-    font-size: 23px;
+    font-size: 20px;
     font-weight: bold;
     font-family: "Source Sans Pro", sans-serif;
 }
