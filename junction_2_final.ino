@@ -8,6 +8,18 @@ int type = 1; // Type of circuit
 // 1 - 4 junction with 4 ultrasonic sensors
 // 0 - 3 junction with 3 ultrasonic sensors
 
+#define DEBUG
+
+#ifdef DEBUG
+const uint8_t max_delay = 0;
+uint8_t dont_print_delay = 0;
+const uint32_t delay_per_read = 250;
+#else
+const uint8_t max_delay = 63;
+uint8_t dont_print_delay = 63;
+const uint32_t delay_per_read = 1;
+#endif
+
 
 const int inductivePin_1 = 2;  // Pin connected to the inductive sensor
 const int inductivePin_2 = 4;  // Pin connected to the inductive sensor
@@ -40,7 +52,6 @@ tl_status_t signal[4];  // 1 for green and 0 for red
 int Timer[4];   // 0 for red and time remaining in millisecs for the green light
 int light_index;
 int multiplier;
-int delay_per_read;
 int threshold_time;
 int flag_max_hit;
 int servoPosition = 0;  // Initial position of the servo motor
@@ -75,7 +86,6 @@ void setup() {
   Timer[light_index] = 5000;
   signal[light_index] = GREEN;
   multiplier = 1250;
-  delay_per_read = 1;
   threshold_time = 30000;
   flag_max_hit = 0;
   type = 1;
@@ -91,9 +101,6 @@ void loop() {
   int c= digitalRead(led_green_3);
   int d= digitalRead(led_green_4);
   int arr2[]= {a, b, c, d};
-
-  Serial.printf("LED red  : %d %d %d %d\n", digitalRead(led_red_1), digitalRead(led_red_2), digitalRead(led_red_3), digitalRead(led_red_4));
-  Serial.printf("LED green: %d %d %d %d\n", digitalRead(led_green_1), digitalRead(led_green_2), digitalRead(led_green_3), digitalRead(led_green_4));
 
   int max_cars=threshold_time/multiplier;
   
@@ -189,22 +196,32 @@ void loop() {
   if(type == 1)
     count_arr[3] += read_from_pin(inductivePin_4);
 
-  // DEBUG PRINTS
-  Serial.println("Count arr:-");
-  Serial.println(count_arr[0]);
-  Serial.println(count_arr[1]);
-  Serial.println(count_arr[2]);
-  if(type == 1) Serial.println(count_arr[3]);
-  Serial.println();
+  if (!dont_print_delay) {
+    Serial.printf("LED red  : %d %d %d %d\n", digitalRead(led_red_1), digitalRead(led_red_2), digitalRead(led_red_3), digitalRead(led_red_4));
+    Serial.printf("LED green: %d %d %d %d\n", digitalRead(led_green_1), digitalRead(led_green_2), digitalRead(led_green_3), digitalRead(led_green_4));
+    // DEBUG PRINTS
+    Serial.println("Count arr:-");
+    Serial.println(count_arr[0]);
+    Serial.println(count_arr[1]);
+    Serial.println(count_arr[2]);
+    if(type == 1) Serial.println(count_arr[3]);
+    Serial.println();
 
-  Serial.println("Timer:-");
-  Serial.println(Timer[0]);
-  Serial.println(Timer[1]);
-  Serial.println(Timer[2]);
-  if(type == 1)  Serial.println(Timer[3]);
-  Serial.println();
-  // END DEBUG PRINTS
-  write_to_om2m(type, count_arr, arr2, "Junction-2/Data");
+    Serial.println("Timer:-");
+    Serial.println(Timer[0]);
+    Serial.println(Timer[1]);
+    Serial.println(Timer[2]);
+    if(type == 1)  Serial.println(Timer[3]);
+    Serial.println();
+    // END DEBUG PRINTS
+    count_arr[light_index] += flag_max_hit;
+    write_to_om2m(type, count_arr, arr2, "Junction-2/Data");
+    count_arr[light_index] -= flag_max_hit;
+    dont_print_delay = max_delay;
+  } else {
+    dont_print_delay--;
+  }
+
 
   if(Timer[light_index] <= 0) {
     // reset all signal variables
