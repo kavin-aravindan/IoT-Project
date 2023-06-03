@@ -87,8 +87,8 @@ function fetchData(endpoint) {
     fetch(endpoint)
         .then(response => response.json())
         .then(data => {
-            var barData = data.slice(-4); // Last four values for the bar chart
-            var pieData = data.slice(0, 4); // First four values for the pie chart
+            var barData = data.slice(-3); // Last four values for the bar chart
+            var pieData = data.slice(0, 3); // First four values for the pie chart
 
             updateBar(chart2, barData);
             updatePie(chart3, pieData);

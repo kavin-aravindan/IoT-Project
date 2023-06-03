@@ -16,7 +16,7 @@ def stats():
 
 @app.route('/junca')
 def junca():
-    url = "https://df20-2409-40f0-4e-5fc7-8c4a-2ee-946f-20c4.ngrok-free.app/~/in-cse/in-name/Database/Junction-1/Data?rcn=4"
+    url = "https://ba87-2409-40f0-4e-5fc7-c433-33cf-4e1f-66dc.ngrok-free.app/~/in-cse/in-name/Database/Junction-1/Data?rcn=4"
     payload={}
     headers = {
     'X-M2M-Origin': 'admin:admin',
@@ -43,7 +43,7 @@ def junca():
 
 @app.route('/juncb')
 def juncb():
-    url = "https://df20-2409-40f0-4e-5fc7-8c4a-2ee-946f-20c4.ngrok-free.app/~/in-cse/in-name/Database/Junction-2/Data?rcn=4"
+    url = "https://ba87-2409-40f0-4e-5fc7-c433-33cf-4e1f-66dc.ngrok-free.app/~/in-cse/in-name/Database/Junction-2/Data?rcn=4"
     payload={}
     headers = {
     'X-M2M-Origin': 'admin:admin',
@@ -70,7 +70,7 @@ def juncb():
 
 @app.route('/juncc')
 def juncc():
-    url = "https://df20-2409-40f0-4e-5fc7-8c4a-2ee-946f-20c4.ngrok-free.app/~/in-cse/in-name/Database/Junction-3/Data?rcn=4"
+    url = "https://ba87-2409-40f0-4e-5fc7-c433-33cf-4e1f-66dc.ngrok-free.app/~/in-cse/in-name/Database/Junction-3/Data?rcn=4"
     payload={}
     headers = {
     'X-M2M-Origin': 'admin:admin',
@@ -97,7 +97,7 @@ def juncc():
 
 @app.route('/juncd')
 def juncd():
-    url = "https://df20-2409-40f0-4e-5fc7-8c4a-2ee-946f-20c4.ngrok-free.app/~/in-cse/in-name/Database/Junction-4/Data?rcn=4"
+    url = "https://ba87-2409-40f0-4e-5fc7-c433-33cf-4e1f-66dc.ngrok-free.app/~/in-cse/in-name/Database/Junction-4/Data?rcn=4"
     payload={}
     headers = {
     'X-M2M-Origin': 'admin:admin',
@@ -124,7 +124,7 @@ def juncd():
 
 @app.route('/junce')
 def junce():
-    url = "https://df20-2409-40f0-4e-5fc7-8c4a-2ee-946f-20c4.ngrok-free.app/~/in-cse/in-name/Database/Junction-5/Data?rcn=4"
+    url = "https://ba87-2409-40f0-4e-5fc7-c433-33cf-4e1f-66dc.ngrok-free.app/~/in-cse/in-name/Database/Junction-5/Data?rcn=4"
     payload={}
     headers = {
     'X-M2M-Origin': 'admin:admin',
@@ -157,7 +157,7 @@ def maps():
 def get_dataA():
     # Generate random data for the bar graph for the traffic light status
     
-    url = "https://df20-2409-40f0-4e-5fc7-8c4a-2ee-946f-20c4.ngrok-free.app/~/in-cse/in-name/Database/Junction-1/Data?rcn=4"
+    url = "https://ba87-2409-40f0-4e-5fc7-c433-33cf-4e1f-66dc.ngrok-free.app/~/in-cse/in-name/Database/Junction-1/Data?rcn=4"
     payload={}
     headers = {
     'X-M2M-Origin': 'admin:admin',
@@ -183,7 +183,7 @@ def get_dataA():
 def get_dataB():
     # Generate random data for the bar graph for the traffic light status
     
-    url = "https://df20-2409-40f0-4e-5fc7-8c4a-2ee-946f-20c4.ngrok-free.app/~/in-cse/in-name/Database/Junction-2/Data?rcn=4"
+    url = "https://ba87-2409-40f0-4e-5fc7-c433-33cf-4e1f-66dc.ngrok-free.app/~/in-cse/in-name/Database/Junction-2/Data?rcn=4"
     payload={}
     headers = {
     'X-M2M-Origin': 'admin:admin',
@@ -207,7 +207,7 @@ def get_dataB():
 def get_dataC():
     # Generate random data for the bar graph for the traffic light status
     
-    url = "https://df20-2409-40f0-4e-5fc7-8c4a-2ee-946f-20c4.ngrok-free.app/~/in-cse/in-name/Database/Junction-3/Data?rcn=4"
+    url = "https://ba87-2409-40f0-4e-5fc7-c433-33cf-4e1f-66dc.ngrok-free.app/~/in-cse/in-name/Database/Junction-3/Data?rcn=4"
     payload={}
     headers = {
     'X-M2M-Origin': 'admin:admin',
@@ -230,7 +230,7 @@ def get_dataC():
 def get_dataD():
     # Generate random data for the bar graph for the traffic light status
     
-    url = "https://df20-2409-40f0-4e-5fc7-8c4a-2ee-946f-20c4.ngrok-free.app/~/in-cse/in-name/Database/Junction-4/Data?rcn=4"
+    url = "https://ba87-2409-40f0-4e-5fc7-c433-33cf-4e1f-66dc.ngrok-free.app/~/in-cse/in-name/Database/Junction-4/Data?rcn=4"
     payload={}
     headers = {
     'X-M2M-Origin': 'admin:admin',
@@ -253,7 +253,7 @@ def get_dataD():
 def get_dataE():
     # Generate random data for the bar graph for the traffic light status
     
-    url = "https://df20-2409-40f0-4e-5fc7-8c4a-2ee-946f-20c4.ngrok-free.app/~/in-cse/in-name/Database/Junction-5ur/Data?rcn=4"
+    url = "https://ba87-2409-40f0-4e-5fc7-c433-33cf-4e1f-66dc.ngrok-free.app/~/in-cse/in-name/Database/Junction-5ur/Data?rcn=4"
     payload={}
     headers = {
     'X-M2M-Origin': 'admin:admin',
