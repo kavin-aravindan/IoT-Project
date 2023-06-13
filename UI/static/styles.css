@@ -262,3 +262,13 @@ li {
     height: 800px; 
     margin: 0 auto;
 }
+
+form {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 25px;
+    font-family: "Source Sans Pro", sans-serif;
+    color: rgb(85, 85, 85);
+    padding-bottom: 20px;
+}
