@@ -1,36 +1,71 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-        crossorigin=""/>
-        <link rel="stylesheet" href="../static/styles.css">
-        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>
-    </head>
-    <body>
-
-        <nav>
-            <div class="logo_header">
-                <img class="logo" src="../static/imgs/logo.png" />
-            </div>
-            <ul class="navbar">
-                <li><a href="http://127.0.0.1:5000/home">Home</a></li>
-                <!-- will be redirected to login page if not logged in -->
-                <li><a href="http://127.0.0.1:5000/stats">Statistics</a></li>
-                <li><a href="http://127.0.0.1:5000/test">Status</a></li>
+  <head>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <link rel="stylesheet" href="../static/styles.css">
+    <py-env> 
+      - matplotlib 
+      - networkx 
+  </py-env>
+  </head>
+  <body>
+    
+    <nav>
+      <div class="logo_header">
+        <img class="logo" src="../static/imgs/logo.png" />
+      </div>
+      <ul class="navbar">
+        <li><a href="http://127.0.0.1:5000/home">Home</a></li>
+        <!-- will be redirected to login page if not logged in -->
+        <li><a href="http://127.0.0.1:5000/stats">Statistics</a></li>
+        <li><a href="http://127.0.0.1:5000/test">Status</a></li>
             </ul>
         </nav>
-
+        
         <br><br><br><br><br><br>
-
+        
         <h1 style="text-align: center;">Live Status</h1>
+        
+        <div id="matplotlib-lineplot"> </div>
+     
+          <py-script output="matplotlib-lineplot">
+              import matplotlib.pyplot as plt
+              import networkx as nx
 
-        <div id="map" style="height: 400px;">
+              fig, ax = plt.subplots()
 
-        </div>
+              g = nx.DiGraph()
+              nodes = ['J1', 'J2', 'J3', 'J4', 'J5', 'J6', 'J7', 'J8', 'J9', 'J10']
+              edges = [("J1", "J2"), ("J3", "J2"), ("J3", "J4"), ("J4", "J5"), ("J6", "J2"), ('J2', 'J1'), ('J2', 'J3'), ('J4', 'J3'), ('J5', 'J4'), ('J4', 'J2'), ('J2', 'J6'),
+                      ("J6", "J7"), ("J7", "J3"), ("J7", "J8"), ("J3", "J9"), ("J9", "J10"), ('J7', 'J6'), ('J3', 'J7'), ('J8', 'J7'), ('J9', 'J3'), ('J10', 'J9'), ("J7", "J9")]
+              weights = {{ data }}
+              #print(len(edges), len(weights))
+              g.add_nodes_from(nodes)
+              # g.add_edges_from(edges)
+              for i in range(len(edges)):
+                  g.add_edge(edges[i][0], edges[i][1], weight=weights[i])
+              pos = {"J1": (-2, 0), "J2": (-1, 0), "J3": (0, 0), "J4": (0, -1), "J5": (0, -2),
+                  "J6": (-1, 1), "J7": (0, 1), "J8": (0, 2), "J9": (1, 0), "J10": (2, 0)}
+              # nx.draw(g, pos=pos, with_labels=True, node_color="red")
+              nx.draw(g, pos=pos, with_labels=False, node_color="red", edge_color="black", width=1)
+
+              # Dijsktra 
+              # for i in range(len(edges)):
+                  # print(edges[i][0], edges[i][1], weights[i])
+
+              path = nx.dijkstra_path(g, "J10", "J1")
+              # print(path)
+
+              # color the nodes in the graph as red if it is in the path
+              for i in range(len(path)):
+                  if i == 0:
+                      nx.draw_networkx_nodes(g, pos, nodelist=[path[i]], node_color='green')
+                  else:
+                      nx.draw_networkx_nodes(g, pos, nodelist=[path[i]], node_color='green')
+                      nx.draw_networkx_edges(g, pos, edgelist=[(path[i-1], path[i])], edge_color='green', width=2)
+              fig
+          </py-script>
     </body>
-<script src="../static/leaflet.js"></script>
 </html>
