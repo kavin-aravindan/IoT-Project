@@ -2,6 +2,9 @@
 
 <html>
   <head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
     <link rel="stylesheet" href="../static/styles.css">
@@ -55,9 +58,9 @@
               # for i in range(len(edges)):
                   # print(edges[i][0], edges[i][1], weights[i])
 
-              path = nx.dijkstra_path(g, "J10", "J1")
+              path = nx.dijkstra_path(g,"{{ startEnd[0] }}","{{ startEnd[1] }}")
               # print(path)
-
+              print({{ data }})
               # color the nodes in the graph as red if it is in the path
               for i in range(len(path)):
                   if i == 0:
@@ -67,5 +70,14 @@
                       nx.draw_networkx_edges(g, pos, edgelist=[(path[i-1], path[i])], edge_color='green', width=2)
               fig
           </py-script>
+          <form action="/test" method="post">
+            <label for="startString">Start String:</label>
+            <input type="text" id="startString" name="startString"><br><br>
+            
+            <label for="endString">End String:</label>
+            <input type="text" id="endString" name="endString"><br><br>
+            
+            <input type="submit" value="Submit">
+          </form>
     </body>
 </html>
