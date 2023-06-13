@@ -155,24 +155,24 @@ def junce():
 def maps():
     if request.method == "POST":
         start = request.form.get("startString")
-        start = "J" + start
+        start = "N" + start
         end = request.form.get("endString")
-        end = "J" + end
+        end = "N" + end
         startEnd = []
         startEnd.append(start)
         startEnd.append(end)
-        data = [2, 3, 1, 4, 2, 1, 3, 1, 2, 1, 2, 3, 1, 2, 3, 1, 1, 2, 1, 3, 4, 1]
+        data = [0, 3, 1, 0, 2, 0, 3, 1, 0, 1, 2, 3, 1, 0, 3, 0, 1, 2, 0, 3, 0, 1]
         return render_template("test.html", data=data, startEnd=startEnd)
     else:
-        start = "J1"
-        end = "J10"
+        start = "N1"
+        end = "N10"
         startEnd = []
         startEnd.append(start)
         startEnd.append(end)
         import random
         random_array = [random.randint(1, 100) for _ in range(22)]
         print(random_array)
-        data = [2, 3, 1, 4, 2, 1, 3, 1, 2, 1, 2, 3, 1, 2, 3, 1, 1, 2, 1, 3, 4, 1]
+        data = [0, 3, 1, 0, 2, 0, 3, 1, 0, 1, 2, 3, 1, 0, 3, 0, 1, 2, 0, 3, 0, 1]
         print(data)
         return render_template('test.html', data=random_array, startEnd=startEnd)
 
