@@ -1,7 +1,9 @@
 from flask import Flask, render_template, jsonify
 import requests
 import random
-import sqlite3
+import json
+import matplotlib.pyplot as plt
+
 
 app = Flask(__name__)
 
@@ -151,7 +153,8 @@ def junce():
 
 @app.route('/test')
 def maps():
-    return render_template('test.html')
+    data = [2, 3, 1, 4, 2, 1, 3, 1, 2, 1, 2, 3, 1, 2, 3, 1, 1, 2, 1, 3, 4, 1]
+    return render_template('test.html', data=data)
 
 @app.route('/dataA')
 def get_dataA():
