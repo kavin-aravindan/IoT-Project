@@ -7,6 +7,12 @@ import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 
+def redGreen(cars, light):
+    if light == 0:
+        return 1.5 * cars
+    else:
+        return 0.75 * cars 
+
 @app.route('/')
 @app.route('/home')
 def home():
@@ -18,7 +24,7 @@ def stats():
 
 @app.route('/junca')
 def junca():
-    url = "https://ba87-2409-40f0-4e-5fc7-c433-33cf-4e1f-66dc.ngrok-free.app/~/in-cse/in-name/Database/Junction-1/Data?rcn=4"
+    url = "https://ff3b-218-185-248-66.ngrok-free.app/~/in-cse/in-name/Database/Junction-1/Data?rcn=4"
     payload={}
     headers = {
     'X-M2M-Origin': 'admin:admin',
@@ -45,7 +51,7 @@ def junca():
 
 @app.route('/juncb')
 def juncb():
-    url = "https://ba87-2409-40f0-4e-5fc7-c433-33cf-4e1f-66dc.ngrok-free.app/~/in-cse/in-name/Database/Junction-2/Data?rcn=4"
+    url = "https://ff3b-218-185-248-66.ngrok-free.app/~/in-cse/in-name/Database/Junction-2/Data?rcn=4"
     payload={}
     headers = {
     'X-M2M-Origin': 'admin:admin',
@@ -72,7 +78,7 @@ def juncb():
 
 @app.route('/juncc')
 def juncc():
-    url = "https://ba87-2409-40f0-4e-5fc7-c433-33cf-4e1f-66dc.ngrok-free.app/~/in-cse/in-name/Database/Junction-3/Data?rcn=4"
+    url = "https://ff3b-218-185-248-66.ngrok-free.app/~/in-cse/in-name/Database/Junction-3/Data?rcn=4"
     payload={}
     headers = {
     'X-M2M-Origin': 'admin:admin',
@@ -99,7 +105,7 @@ def juncc():
 
 @app.route('/juncd')
 def juncd():
-    url = "https://ba87-2409-40f0-4e-5fc7-c433-33cf-4e1f-66dc.ngrok-free.app/~/in-cse/in-name/Database/Junction-4/Data?rcn=4"
+    url = "https://ff3b-218-185-248-66.ngrok-free.app/~/in-cse/in-name/Database/Junction-4/Data?rcn=4"
     payload={}
     headers = {
     'X-M2M-Origin': 'admin:admin',
@@ -126,7 +132,7 @@ def juncd():
 
 @app.route('/junce')
 def junce():
-    url = "https://ba87-2409-40f0-4e-5fc7-c433-33cf-4e1f-66dc.ngrok-free.app/~/in-cse/in-name/Database/Junction-5/Data?rcn=4"
+    url = "https://ff3b-218-185-248-66.ngrok-free.app/~/in-cse/in-name/Database/Junction-5/Data?rcn=4"
     payload={}
     headers = {
     'X-M2M-Origin': 'admin:admin',
@@ -153,6 +159,89 @@ def junce():
 
 @app.route('/test', methods=["GET", "POST"])
 def maps():
+    weights = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    # url = "https://ff3b-218-185-248-66.ngrok-free.app/~/in-cse/in-name/Database/Junction-1/Data?rcn=4"
+    # payload={}
+    # headers = {
+    # 'X-M2M-Origin': 'admin:admin',
+    # 'Accept': 'application/json'
+    # }
+    # response = requests.request("GET", url, headers=headers, data=payload)
+    # dataResponse = eval(response.text)
+    # data = dataResponse["m2m:cnt"]["m2m:cin"][-1]["con"]
+    # dataA = data[1:-1].split(", ")
+    # weights[7] = redGreen(int(dataA[0]), int(dataA[4]))
+    # weights[6] = redGreen(int(dataA[1]), int(dataA[5]))
+    # weights[12] = redGreen(int(dataA[2]), int(dataA[6]))
+    # weights[19] = redGreen(int(dataA[3]), int(dataA[7])) 
+    
+    # url = "https://ff3b-218-185-248-66.ngrok-free.app/~/in-cse/in-name/Database/Junction-2/Data?rcn=4"
+    # payload={}
+    # headers = {
+    # 'X-M2M-Origin': 'admin:admin',
+    # 'Accept': 'application/json'
+    # }
+    # response = requests.request("GET", url, headers=headers, data=payload)
+    # dataResponse = eval(response.text)
+    # data = dataResponse["m2m:cnt"]["m2m:cin"][-1]["con"]
+    # dataB = data[1:-1].split(", ")
+    
+    # weights[1] = redGreen(int(dataB[0]), int(dataB[3]))
+    # weights[0] = redGreen(int(dataB[1]), int(dataB[4]))
+    # weights[4] = redGreen(int(dataB[2]), int(dataB[5]))
+    # weights[15] = redGreen(int(dataA[2]), int(dataA[5])) 
+    
+    # url = "https://ff3b-218-185-248-66.ngrok-free.app/~/in-cse/in-name/Database/Junction-3/Data?rcn=4"
+    # payload={}
+    # headers = {
+    # 'X-M2M-Origin': 'admin:admin',
+    # 'Accept': 'application/json'
+    # }
+    # response = requests.request("GET", url, headers=headers, data=payload)
+    # dataResponse = eval(response.text)
+    
+    # data = dataResponse["m2m:cnt"]["m2m:cin"][-1]["con"]
+    # dataC = data[1:-1].split(", ")
+    
+    # weights[10] = redGreen(int(dataC[2]), int(dataC[5]))
+    # weights[11] = redGreen(int(dataC[2]), int(dataC[5]))
+    # weights[17] = redGreen(int(dataC[1]), int(dataC[4]))
+    # weights[16] = redGreen(int(dataC[0]), int(dataC[3])) 
+    
+    # url = "https://ff3b-218-185-248-66.ngrok-free.app/~/in-cse/in-name/Database/Junction-4/Data?rcn=4"
+    # payload={}
+    # headers = {
+    # 'X-M2M-Origin': 'admin:admin',
+    # 'Accept': 'application/json'
+    # }
+    # response = requests.request("GET", url, headers=headers, data=payload)
+    # dataResponse = eval(response.text)
+    
+    # data = dataResponse["m2m:cnt"]["m2m:cin"][-1]["con"]
+    # dataD = data[1:-1].split(", ")
+    
+    # weights[19] = redGreen(int(dataD[0]), int(dataD[3]))
+    # weights[13] = redGreen(int(dataD[1]), int(dataD[4]))
+    # weights[20] = redGreen(int(dataD[2]), int(dataD[5])) 
+    
+    # url = "https://ff3b-218-185-248-66.ngrok-free.app/~/in-cse/in-name/Database/Junction-5/Data?rcn=4"
+    # payload={}
+    # headers = {
+    # 'X-M2M-Origin': 'admin:admin',
+    # 'Accept': 'application/json'
+    # }
+    # response = requests.request("GET", url, headers=headers, data=payload)
+    # dataResponse = eval(response.text)
+    
+    # data = dataResponse["m2m:cnt"]["m2m:cin"][-1]["con"]
+    # dataE = data[1:-1].split(", ")
+    
+    # weights[8] = redGreen(int(dataE[0]), int(dataE[3]))
+    # weights[9] = redGreen(int(dataE[1]), int(dataE[4]))
+    # weights[2] = redGreen(int(dataE[2]), int(dataE[5])) 
+    # print(weights)
+    # weights
+    
     if request.method == "POST":
         start = request.form.get("startString")
         start = "N" + start
@@ -161,26 +250,20 @@ def maps():
         startEnd = []
         startEnd.append(start)
         startEnd.append(end)
-        data = [0, 3, 1, 0, 2, 0, 3, 1, 0, 1, 2, 3, 1, 0, 3, 0, 1, 2, 0, 3, 0, 1]
-        return render_template("test.html", data=data, startEnd=startEnd)
+        return render_template("test.html", data=weights, startEnd=startEnd)
     else:
         start = "N1"
         end = "N10"
         startEnd = []
         startEnd.append(start)
         startEnd.append(end)
-        import random
-        random_array = [random.randint(1, 100) for _ in range(22)]
-        print(random_array)
-        data = [0, 3, 1, 0, 2, 0, 3, 1, 0, 1, 2, 3, 1, 0, 3, 0, 1, 2, 0, 3, 0, 1]
-        print(data)
-        return render_template('test.html', data=random_array, startEnd=startEnd)
+        return render_template('test.html', data=weights, startEnd=startEnd)
 
 @app.route('/dataA')
 def get_dataA():
     # Generate random data for the bar graph for the traffic light status
     
-    url = "https://ba87-2409-40f0-4e-5fc7-c433-33cf-4e1f-66dc.ngrok-free.app/~/in-cse/in-name/Database/Junction-1/Data?rcn=4"
+    url = "https://ff3b-218-185-248-66.ngrok-free.app/~/in-cse/in-name/Database/Junction-1/Data?rcn=4"
     payload={}
     headers = {
     'X-M2M-Origin': 'admin:admin',
@@ -206,7 +289,7 @@ def get_dataA():
 def get_dataB():
     # Generate random data for the bar graph for the traffic light status
     
-    url = "https://ba87-2409-40f0-4e-5fc7-c433-33cf-4e1f-66dc.ngrok-free.app/~/in-cse/in-name/Database/Junction-2/Data?rcn=4"
+    url = "https://ff3b-218-185-248-66.ngrok-free.app/~/in-cse/in-name/Database/Junction-2/Data?rcn=4"
     payload={}
     headers = {
     'X-M2M-Origin': 'admin:admin',
@@ -230,7 +313,7 @@ def get_dataB():
 def get_dataC():
     # Generate random data for the bar graph for the traffic light status
     
-    url = "https://ba87-2409-40f0-4e-5fc7-c433-33cf-4e1f-66dc.ngrok-free.app/~/in-cse/in-name/Database/Junction-3/Data?rcn=4"
+    url = "https://ff3b-218-185-248-66.ngrok-free.app/~/in-cse/in-name/Database/Junction-3/Data?rcn=4"
     payload={}
     headers = {
     'X-M2M-Origin': 'admin:admin',
@@ -253,7 +336,7 @@ def get_dataC():
 def get_dataD():
     # Generate random data for the bar graph for the traffic light status
     
-    url = "https://ba87-2409-40f0-4e-5fc7-c433-33cf-4e1f-66dc.ngrok-free.app/~/in-cse/in-name/Database/Junction-4/Data?rcn=4"
+    url = "https://ff3b-218-185-248-66.ngrok-free.app/~/in-cse/in-name/Database/Junction-4/Data?rcn=4"
     payload={}
     headers = {
     'X-M2M-Origin': 'admin:admin',
@@ -276,7 +359,7 @@ def get_dataD():
 def get_dataE():
     # Generate random data for the bar graph for the traffic light status
     
-    url = "https://ba87-2409-40f0-4e-5fc7-c433-33cf-4e1f-66dc.ngrok-free.app/~/in-cse/in-name/Database/Junction-5ur/Data?rcn=4"
+    url = "https://ff3b-218-185-248-66.ngrok-free.app/~/in-cse/in-name/Database/Junction-5ur/Data?rcn=4"
     payload={}
     headers = {
     'X-M2M-Origin': 'admin:admin',

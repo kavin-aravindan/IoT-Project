@@ -41,7 +41,7 @@
 
               g = nx.DiGraph()
               nodes = ['N1', 'N2', 'N3', 'N4', 'N5', 'N6', 'N7', 'N8', 'N9', 'N10']
-              edges = [("N1", "N2"), ("N3", "N2"), ("N3", "N4"), ("N4", "N5"), ("N6", "N2"), ('N2', 'N1'), ('N2', 'N3'), ('N4', 'N3'), ('N5', 'N4'), ('N4', 'N2'), ('N2', 'N6'),
+              edges = [("N1", "N2"), ("N3", "N2"), ("N3", "N4"), ("N4", "N5"), ("N6", "N2"), ('N2', 'N1'), ('N2', 'N3'), ('N4', 'N3'), ('N5', 'N4'), ('N2', 'N4'), ('N2', 'N6'),
                       ("N6", "N7"), ("N7", "N3"), ("N7", "N8"), ("N3", "N9"), ("N9", "N10"), ('N7', 'N6'), ('N3', 'N7'), ('N8', 'N7'), ('N9', 'N3'), ('N10', 'N9'), ("N7", "N9")]
               weights = {{ data }}
               #print(len(edges), len(weights))
@@ -52,7 +52,7 @@
               pos = {"N1": (-2, 0), "N2": (-1, 0), "N3": (0, 0), "N4": (0, -1), "N5": (0, -2),
                   "N6": (-1, 1), "N7": (0, 1), "N8": (0, 2), "N9": (1, 0), "N10": (2, 0)}
               # nx.draw(g, pos=pos, with_labels=True, node_color="red")
-              nx.draw(g, pos=pos, with_labels=True, node_color="red", edge_color="black")
+              nx.draw(g, pos=pos, with_labels=True, node_color="red", edge_color="black", node_size=1000)
 
               # Dijsktra 
               # for i in range(len(edges)):
@@ -64,9 +64,9 @@
               # color the nodes in the graph as red if it is in the path
               for i in range(len(path)):
                   if i == 0:
-                      nx.draw_networkx_nodes(g, pos, nodelist=[path[i]], node_color='green')
+                      nx.draw_networkx_nodes(g, pos, nodelist=[path[i]], node_color='green', node_size=1000)
                   else:
-                      nx.draw_networkx_nodes(g, pos, nodelist=[path[i]], node_color='green')
+                      nx.draw_networkx_nodes(g, pos, nodelist=[path[i]], node_color='green', node_size=1000)
                       nx.draw_networkx_edges(g, pos, edgelist=[(path[i-1], path[i])], edge_color='green', width=2)
               fig
           </py-script>
