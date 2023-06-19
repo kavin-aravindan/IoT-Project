@@ -2,10 +2,10 @@ var ctx2 = document.getElementById('chart2').getContext('2d');
 var chart2 = new Chart(ctx2, {
     type: 'bar',
     data: {
-        labels: ['Signal 1', 'Signal 2', 'Signal 3', 'Signal 4'], // Set the labels for the bars
+        labels: ['Signal 1', 'Signal 2', 'Signal 3'], // Set the labels for the bars
         datasets: [{
             label: 'Signal Status',
-            data: [0, 0, 0, 0], // Initial values for the bar heights
+            data: [0, 0, 0], // Initial values for the bar heights
             backgroundColor: 'rgba(192, 75, 192, 0.5)',
             borderWidth: 1,
             borderColor: 'rgba(192, 75, 192, 1)',
@@ -48,10 +48,10 @@ var ctx3 = document.getElementById('chart3').getContext('2d');
 var chart3 = new Chart(ctx3, {
     type: 'pie',
     data: {
-        labels: ['Road 1', 'Road 2', 'Road 3', 'Road 4'],
+        labels: ['Road 1', 'Road 2', 'Road 3'],
         datasets: [{
             label: 'Number of cars',
-            data: [0, 0, 0, 0], 
+            data: [0, 0, 0], 
             backgroundColor: [
                 'rgba(255, 99, 132, 0.5)',
                 'rgba(54, 162, 235, 0.5)',
